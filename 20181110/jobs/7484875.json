@@ -1,0 +1,22 @@
+{
+    "ac_deg": "大學", 
+    "ac_dep": "電機電子工程學類,電機與資訊工程研究所,通訊工程學系", 
+    "ac_sch": "無", 
+    "com_addr": "新竹市金山七街1號6樓", 
+    "com_name": "多方科技股份有限公司", 
+    "com_unicode": "24626588", 
+    "doom": "不提供住宿", 
+    "extra_hrs": "", 
+    "food": "無", 
+    "hire_dur": "不定期契約", 
+    "hire_num": "1", 
+    "job_desc": "The operating system team is responsible for providing a complete environment from booting to an up and running operating system on MultiTek’s platform. Optimization of OS and software on top of it are also major tasks of the team. MultiTek engineers develop the next-generation technologies of artificial intelligence vision system for surveillance and IoT.Our engineers need to be passionate and independently thinking to tackle new problems as we continue pushing technology forward.Responsibilities：1.Work with a team to: - Provide an embedded Linux environment. - Provide an RTOS environment. - Provide friendly ways to customize operating system for different machines of our customers. - Design, implement and verify booting process. - Design, implement and verify core drivers. - Optimize boot time and system performance.2. Assist software teams to: - Optimize driver and middleware performances.", 
+    "job_id": "7484875", 
+    "job_req": "全職\r\n                            \r\n                            日班：自09時00分至18時00分", 
+    "job_title": "Operating System Engineer[Taipei/Hsinchu]", 
+    "job_type": "軟(韌)體設計工程師", 
+    "off_days": "週休二日", 
+    "pay_type": "依學經歷、證照核薪", 
+    "work_exp": "需具備「無特定名稱」，1年以上工作經驗", 
+    "work_loc": "工作地非屬專區"
+}

@@ -1,0 +1,22 @@
+{
+    "ac_deg": "大學", 
+    "ac_dep": "不拘", 
+    "ac_sch": "無", 
+    "com_addr": "台北市中山區中山北路二段112號2樓之6", 
+    "com_name": "無限方舟科技股份有限公司", 
+    "com_unicode": "42841069", 
+    "doom": "不提供住宿", 
+    "extra_hrs": "", 
+    "food": "無", 
+    "hire_dur": "不定期契約", 
+    "hire_num": "1", 
+    "job_desc": "從事演算法的研究、分析、構建並設計或修改相關軟體等工作。• Job Description:– 後端系統開發與維運。– 協助維護及優化現有大數據分析系統。 • Responsibilities:– 後端系統開發維運。– 協助維護及優化現有大數據分析系統。– 系統後端程式開發。 - 分散式運算架構開發。 - 巨量資料儲存。 - 評估資料分析需求，並轉換為具體可行之演算法。 - ETL功能、產品開發。 - 與網頁前端介接的Web API開發(以Python進行)。 - 爬蟲系統的開發與維護。  • Skill Requirement :– 熟悉Python。- 熟悉資料庫系統的使用與管理(SQL 或 NoSQL皆可)。 - 熟悉Linux。 - 具備任何open source套件的使用經驗。 Preferred Qualification: - 基本統計知識 - 熟悉資料結構、演算法及系統優化。 - 具備雲端運算服務使用經驗（AWS/GCP/Azure）。 - 具備機器學習或資料分析演算法知識與經驗，曾經進行相關專案者尤佳。", 
+    "job_id": "8560907", 
+    "job_req": "全職\r\n                            \r\n                            日班：自09時00分至18時00分", 
+    "job_title": "Data Engineer", 
+    "job_type": "演算法開發工程師", 
+    "off_days": "週休二日", 
+    "pay_type": "月薪\r\n                            \r\n                            35000 - 45000", 
+    "work_exp": "不拘", 
+    "work_loc": "工作地非屬專區"
+}
