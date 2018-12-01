@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/jTinder.css">
 </head>
 <body>
+    <!-- jTinder status text  -->
+    <div id="like_str"></div>
+    <div id="dislike_str"></div>
     <!-- start padding container -->
     <div class="wrap">
         <!-- start jtinder container -->
@@ -77,6 +80,7 @@
 
 
 
+
     <!-- jQuery lib -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <!-- transform2d lib -->
@@ -88,6 +92,8 @@
 <script>
 
 $( document ).ready(function() {
+    var like_str = "";
+    var dislike_str = ""
     $.get("http://localhost:5000/questions/?num=5", 
 
         function(result){
@@ -100,5 +106,6 @@ $( document ).ready(function() {
 });
 
 </script>
+
 </body>
 </html>
