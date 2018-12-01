@@ -4,7 +4,7 @@ import dill
 import jieba
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
-from flask import Flask
+from flask import Flask, request
 
 tfidf = dill.load(open("model_tfidf.dil", 'rb'))
 kmeans = dill.load(open("model_kmeans.dil", 'rb'))
@@ -30,10 +30,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    mstr = "AUG 使用的模式"
+    mstr = request.args.get('mstr')
+    print(mstr)
     input_vector = tfidf.transform([token(mstr)])
-    return kmeans.predict(input_vector)
-
+    return "%s"%kmeans.predict(input_vector)
 
 if __name__ == '__main__':
     app.run(debug=True)
