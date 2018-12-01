@@ -31,7 +31,6 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     mstr = request.args.get('mstr')
-    print(mstr)
     input_vector = tfidf.transform([token(mstr)])
     return "%s"%kmeans.predict(input_vector)
 
