@@ -11,9 +11,13 @@
     <!-- jTinder status text  -->
     <div id="like_str"></div>
     <div id="dislike_str"></div>
+    <div id='sys_rec'></div>
     <!-- start padding container -->
     <div class="wrap">
         <!-- start jtinder container -->
+        <div>
+            <button id="submit_result">submit</button>
+        </div>
         <div id="tinderslide">
             <ul>
                 <li class="pane1">
@@ -103,6 +107,17 @@ $( document ).ready(function() {
         });
     });
 
+    $("#submit_result").click(function(){
+        $.post("http://localhost:5000/results/",{
+            like:$("#like_str").html(),
+            dislike:$("#dislike_str").html(),
+        },function(result){
+            $("#sys_rec").html(result);
+        });
+    });
+    $("#submit_result").hide();
+    $("#like_str").hide()
+    $("#dislike_str").hide()
 });
 
 </script>
