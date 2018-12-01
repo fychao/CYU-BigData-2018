@@ -158,7 +158,7 @@ def results():
         like_jobs.append( (idx, cosine_similarity(vec_like[0], vec_wanted_job[idx])[0][0]) )
 
     # 取出最符合的10項工作
-    topn_jobs = sorted(dict(like_jobs).items(), key=operator.itemgetter(1), reverse=True)[:10]
+    topn_jobs = sorted(dict(like_jobs).items(), key=operator.itemgetter(1), reverse=True)[:20]
     like_job = [wanted_jobs[k] for (k, sim) in topn_jobs]
 
     # 將符合工作項目 再向量化
