@@ -14,6 +14,9 @@
     <!-- start padding container -->
     <div class="wrap">
         <!-- start jtinder container -->
+        <div>
+            <button id="submit_result">submit</button>
+        </div>
         <div id="tinderslide">
             <ul>
                 <li class="pane1">
@@ -103,6 +106,15 @@ $( document ).ready(function() {
         });
     });
 
+    $("#submit_result").click(function(){
+        $.post("http://localhost:5000/results/",{
+            like:$("#like_str").html(),
+            dislike:$("#dislike_str").html(),
+        },function(result){
+            console.log(result);
+        });
+    });
+    $("#submit_result").hide();
 });
 
 </script>

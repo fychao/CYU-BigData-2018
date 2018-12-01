@@ -122,7 +122,14 @@ def questions():
     resp.headers['Access-Control-Allow-Origin'] = '*' # 不安全
     return resp
 
-
+@app.route("/results/", methods=['POST'])
+def results():
+    print (request.form['like'])
+    print (request.form['dislike'])
+    resp = flask.Response(" ",
+             mimetype="application/json")
+    resp.headers['Access-Control-Allow-Origin'] = '*' # 不安全
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=True)

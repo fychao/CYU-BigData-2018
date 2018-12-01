@@ -7,12 +7,15 @@ $("#tinderslide").jTinder({
 	    // set the status text
 	    $("#dislike_str").html($("#dislike_str").html() + $("#questions-"+(item.index()+1)).html());
         //$('#status').html($('#status').html() + (item.index()+1));
+
+        if( item.index() == 0) $("#submit_result").show();
     },
 	// like callback
     onLike: function (item) {
 	    // set the status text
         //$('#status').html($('#status').html() + (item.index()+1));
         $("#like_str").html($("#like_str").html() + $("#questions-"+(item.index()+1)).html());
+        if( item.index() == 0) $("#submit_result").show();
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,
