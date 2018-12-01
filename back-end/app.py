@@ -6,7 +6,10 @@ import dill
 import json
 import uuid
 import jieba
+import operator
+
 from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from flask import Flask, request
 
@@ -124,9 +127,66 @@ def questions():
 
 @app.route("/results/", methods=['POST'])
 def results():
-    print (request.form['like'])
-    print (request.form['dislike'])
-    resp = flask.Response(" ",
+    str_like = request.form['like']
+    str_dislike = request.form['dislike']
+
+
+    vec_like = tfidf.transform([token(str_like)])
+    vec_dislike = tfidf.transform([token(str_dislike)])
+
+    wanted_k = kmeans.predict(vec_like) 
+
+    # 從分群的資料抓 20筆出來
+    bdir = "./jobs/"
+    wanted_jobs = []
+    isStopGetJob = False
+    while not isStopGetJob:
+        pick_file = random.sample(os.listdir(bdir), 1)
+        job = json.loads(open(bdir+pick_file[0], 'r', encoding='utf8').read())
+        job_k = kmeans.predict( tfidf.transform([token(job['job_desc'])]) )
+        if wanted_k[0] == job_k[0]:
+        	wanted_jobs.append(job)
+
+        if len(wanted_jobs) == 20:
+        	isStopGetJob = True
+
+    vec_wanted_job = [ tfidf.transform([token(job['job_desc'])]) for job in wanted_jobs]
+
+    # 計算相似度模型
+    like_jobs = []
+    for idx in range(len(vec_wanted_job)):
+    	like_jobs.append( (idx, cosine_similarity(vec_like[0], vec_wanted_job[idx])[0][0]) )
+
+    # 取出最符合的10項工作
+    topn_jobs = sorted(dict(like_jobs).items(), key=operator.itemgetter(1), reverse=True)[:10]
+    like_job = [wanted_jobs[k] for (k, sim) in topn_jobs]
+
+    # 將符合工作項目 再向量化
+    vec_like_job = [ tfidf.transform([token(job['job_desc'])]) for job in like_job]
+    print(vec_like_job)
+
+    # 計算相似度模型
+    unlike_jobs = []
+    for idx in range(len(vec_like_job)):
+    	unlike_jobs.append( (idx, cosine_similarity(vec_dislike[0], vec_like_job[idx])[0][0]) )
+
+    # 找出前5個最不想要的
+    topn_jobs_dislike = sorted(dict(unlike_jobs).items(), key=operator.itemgetter(1), reverse=True)[:5]
+    dislike_job_id = set([ idx for (idx, value) in topn_jobs_dislike])
+
+    # 把不想要的過濾掉
+    final_proposed = "系統推薦：<ul>"
+    for idx in range(len(like_job)):
+    	if idx in dislike_job_id:
+    		print ("dislike")
+    	else:
+    		final_proposed += "<li>%s</li>"%like_job[idx]['job_title']
+
+    final_proposed +=  "</ul>"
+
+    print (final_proposed)
+
+    resp = flask.Response(json.dumps(final_proposed),
              mimetype="application/json")
     resp.headers['Access-Control-Allow-Origin'] = '*' # 不安全
     return resp

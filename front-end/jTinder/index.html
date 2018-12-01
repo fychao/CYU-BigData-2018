@@ -11,6 +11,7 @@
     <!-- jTinder status text  -->
     <div id="like_str"></div>
     <div id="dislike_str"></div>
+    <div id='sys_rec'></div>
     <!-- start padding container -->
     <div class="wrap">
         <!-- start jtinder container -->
@@ -111,10 +112,12 @@ $( document ).ready(function() {
             like:$("#like_str").html(),
             dislike:$("#dislike_str").html(),
         },function(result){
-            console.log(result);
+            $("#sys_rec").html(result);
         });
     });
     $("#submit_result").hide();
+    $("#like_str").hide()
+    $("#dislike_str").hide()
 });
 
 </script>
