@@ -98,7 +98,7 @@ def getJobFeature(fn_num=5):
 	# print("\n===Keywords===")
 	# for (w, s) in keywords:
 	#    print("%s=%.2f"%(w, s))
-	return list(set([ w for (w, s) in keywords if not w in filter_wrds and len(w)==2]))
+	return ", ".join(list(set([ w for (w, s) in keywords if not w in filter_wrds and len(w)==2]))[:10])
 
 
 
@@ -109,14 +109,15 @@ def questions():
 
     return_q = []
     for idx in range(int(num)):
-        wrds = getJobFeature(fn_num=2)[:10]
+        wrds = getJobFeature(fn_num=2)
         return_q.append((idx, wrds))
 
-    return_q = dict(return_q)
-    return_q['uuid'] = "%s"%uuid.uuid4()
-    return_q['num'] = int(num)
+    res = dict()
+    res['qestions'] = dict(return_q)
+    res['uuid'] = "%s"%uuid.uuid4()
+    res['num'] = int(num)
 
-    resp = flask.Response(json.dumps(return_q), 
+    resp = flask.Response(json.dumps(res), 
     	mimetype="application/json")
     resp.headers['Access-Control-Allow-Origin'] = '*' # 不安全
     return resp

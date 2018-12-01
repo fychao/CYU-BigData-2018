@@ -15,50 +15,49 @@
             <ul>
                 <li class="pane1">
                     <div>
-                        <h1>Question 1</h1>
-                        <div>
-                            1111
+                        <h1>期待職涯 Q1</h1>
+                        <div id="questions-1">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane2">
-                    
+                <li class="pane1">
                     <div>
-                        <h1>Question 2</h1>
-                        <div>
-                            2222
+                        <h1>期待職涯 Q2</h1>
+                        <div id="questions-2">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane3">
+                <li class="pane1">
                     <div>
-                        <h1>Question 3</h1>
-                        <div>
-                            333
+                        <h1>期待職涯 Q3</h1>
+                        <div id="questions-3">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane4">
+                <li class="pane1">
                     <div>
-                        <h1>Question 4</h1>
-                        <div>
-                            444 
+                        <h1>期待職涯 Q4</h1>
+                        <div id="questions-4">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane5">
+                <li class="pane1">
                     <div>
-                        <h1>Question 5</h1>
-                        <div>
-                            555
+                        <h1>期待職涯 Q5</h1>
+                        <div id="questions-5">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
@@ -76,8 +75,7 @@
         <a href="#" class="like"><i></i></a>
     </div>
 
-    <!-- jTinder status text  -->
-    <div id="status"></div>
+
 
     <!-- jQuery lib -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -90,9 +88,15 @@
 <script>
 
 $( document ).ready(function() {
-    $("#tinderslide").append('<li class="pane6"><div><h1>Question 6</h1><div>666</div></div><div class="like"></div><div class="dislike"></div></li>');
+    $.get("http://localhost:5000/questions/?num=5", 
 
-    console.log( "ready!" );
+        function(result){
+            console.log(result);
+            $.each(result.qestions, function( index, value ) { 
+                $("#questions-"+(parseInt(index)+1)).append(value);
+        });
+    });
+
 });
 
 </script>
