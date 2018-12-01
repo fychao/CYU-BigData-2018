@@ -40,6 +40,14 @@ def hello():
     input_vector = tfidf.transform([token(mstr)])
     return "%s"%kmeans.predict(input_vector)
 
+@app.route("/questions/")
+def questions():
+    
+    num = request.args.get("num")
+
+    #input_vector = tfidf.transform([token(mstr)])
+    return "我要吐 %s 題數"%(num)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
