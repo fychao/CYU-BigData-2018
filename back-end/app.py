@@ -4,6 +4,7 @@ import os
 import random
 import dill
 import json
+import uuid
 import jieba
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -69,6 +70,9 @@ def extract_topn_from_vector(feature_names, sorted_items, topn=10):
  
     return zip(feature_vals, score_vals)
 
+# 過濾不想要的詞彙
+filter_wrds = set(["如何", "各項"])
+
 def getJobFeature(fn_num=5):
     bdir = "./jobs/"
     # 以下為 ucan 文本集合使用
@@ -94,7 +98,7 @@ def getJobFeature(fn_num=5):
     # print("\n===Keywords===")
     # for (w, s) in keywords:
     #    print("%s=%.2f"%(w, s))
-    return list(set([ w for (w, s) in keywords]))
+    return ", ".join(list(set([ w for (w, s) in keywords if not w in filter_wrds and len(w)==2]))[:10])
 
 
 
@@ -105,12 +109,19 @@ def questions():
 
     return_q = []
     for idx in range(int(num)):
-        wrds = getJobFeature(fn_num=2)[:10]
+        wrds = getJobFeature(fn_num=2)
         return_q.append((idx, wrds))
 
-    return_q = dict(return_q)
-    #input_vector = tfidf.transform([token(mstr)])
-    return "我要吐 %s 題數, 抓到的字詞：%s"%(num, return_q)
+    res = dict()
+    res['qestions'] = dict(return_q)
+    res['uuid'] = "%s"%uuid.uuid4()
+    res['num'] = int(num)
+
+    resp = flask.Response(json.dumps(res), 
+        mimetype="application/json")
+    resp.headers['Access-Control-Allow-Origin'] = '*' # 不安全
+    return resp
+
 
 
 if __name__ == '__main__':

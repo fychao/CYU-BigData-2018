@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/jTinder.css">
 </head>
 <body>
+    <!-- jTinder status text  -->
+    <div id="like_str"></div>
+    <div id="dislike_str"></div>
     <!-- start padding container -->
     <div class="wrap">
         <!-- start jtinder container -->
@@ -15,50 +18,49 @@
             <ul>
                 <li class="pane1">
                     <div>
-                        <h1>你喜歡的工作特徵</h1>
-                        <div>
-                            餐飲內, 醫院, 玻璃, 飛機, 美編
+                        <h1>期待職涯 Q1</h1>
+                        <div id="questions-1">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane2">
-                    
+                <li class="pane1">
                     <div>
-                        <h1>你喜歡的工作特徵</h1>
-                        <div>
-                            裝訂, 平面, 繪圖, 繪圖
+                        <h1>期待職涯 Q2</h1>
+                        <div id="questions-2">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane3">
+                <li class="pane1">
                     <div>
-                        <h1>你喜歡的工作特徵</h1>
-                        <div>
-                            分析在不同環境中設計系統的問題
+                        <h1>期待職涯 Q3</h1>
+                        <div id="questions-3">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane4">
+                <li class="pane1">
                     <div>
-                        <h1>你喜歡的工作特徵</h1>
-                        <div>
-                            使用資料探勘的工具和及其技術。 
+                        <h1>期待職涯 Q4</h1>
+                        <div id="questions-4">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
                     <div class="dislike"></div>
                 </li>
-                <li class="pane5">
+                <li class="pane1">
                     <div>
-                        <h1>你喜歡的工作特徵</h1>
-                        <div>
-                            測試產品/服務的品質。
+                        <h1>期待職涯 Q5</h1>
+                        <div id="questions-5">
+                            
                         </div>
                     </div>
                     <div class="like"></div>
@@ -76,8 +78,8 @@
         <a href="#" class="like"><i></i></a>
     </div>
 
-    <!-- jTinder status text  -->
-    <div id="status"></div>
+
+
 
     <!-- jQuery lib -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -87,5 +89,23 @@
     <script type="text/javascript" src="js/jquery.jTinder.js"></script>
     <!-- jTinder initialization script -->
     <script type="text/javascript" src="js/main.js"></script>
+<script>
+
+$( document ).ready(function() {
+    var like_str = "";
+    var dislike_str = ""
+    $.get("http://localhost:5000/questions/?num=5", 
+
+        function(result){
+            console.log(result);
+            $.each(result.qestions, function( index, value ) { 
+                $("#questions-"+(parseInt(index)+1)).append(value);
+        });
+    });
+
+});
+
+</script>
+
 </body>
 </html>
